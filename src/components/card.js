@@ -8,7 +8,7 @@ class Card extends Component {
         this.state = {
             colorOne: '',
             pluralNoun: '',
-            adjectiveOne: '',
+            adjOne: '',
             celebOne: '',
 
             adjTwo: '',
