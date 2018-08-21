@@ -93,7 +93,6 @@ body {
     grid-template-rows: 1fr 50px;
 
     &__inputs {
-        background-color: skyblue;
         display: grid;
         grid-template-rows: repeat(4, 1fr);
         grid-template-columns: repeat(4, 1fr);
