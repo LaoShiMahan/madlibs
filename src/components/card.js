@@ -83,11 +83,11 @@ class Card extends Component {
                             return Input((data), this.handleInputChange, index)
                         })
                     }
-                    <button type="submit">{this.state.contentVisible ? 'Clear Form' : 'Generate Madlib'}</button>
-                    {
-                        this.state.contentVisible ? <Content data={this.state}/> : ''
-                    }
                 </div>
+                <button type="submit">{this.state.contentVisible ? 'Clear Form' : 'Generate Madlib'}</button>
+                {
+                    this.state.contentVisible ? <Content data={this.state}/> : ''
+                }
             </form>
         )
     }
