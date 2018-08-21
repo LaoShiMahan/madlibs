@@ -1,37 +1,54 @@
 import React, { Component } from 'react';
 
 import Input from './input';
+import Content from './content';
+
+const INITIAL_STATE = {
+    colorOne: '',
+    pluralNoun: '',
+    adjOne: '',
+    celebOne: '',
+
+    adjTwo: '',
+    nounOne: '',
+    numOne: '',
+    numTwo: '',
+
+    nounTwo: '',
+    adjThree: '',
+    celebTwo: '',
+    celebThree: '',
+
+    adjFour: '',
+    nounThree: '',
+    celebFour: '',
+    adjFive: '',
+    contentVisible: false
+}
 
 class Card extends Component {
     constructor() {
         super()
-        this.state = {
-            colorOne: '',
-            pluralNoun: '',
-            adjOne: '',
-            celebOne: '',
-
-            adjTwo: '',
-            nounOne: '',
-            numOne: '',
-            numTwo: '',
-
-            nounTwo: '',
-            adjThree: '',
-            celebTwo: '',
-            celebThree: '',
-
-            adjFour: '',
-            nounThree: '',
-            celebFour: '',
-            adjFive: ''
-        }
+        this.state = INITIAL_STATE;
 
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleFormSubmit = this.handleFormSubmit.bind(this);
     }
 
     handleInputChange(event) {
         this.setState({ [event.target.name]: event.target.value })
+    }
+
+    handleFormSubmit(event) {
+        event.preventDefault()
+
+        if (this.state.contentVisible) {
+            this.setState(INITIAL_STATE)
+        } else {
+            this.setState({ contentVisible: true })
+        }
+
+        this.setState({ contentVisible: !this.state.contentVisible })
     }
 
     render() {
@@ -59,11 +76,19 @@ class Card extends Component {
         ]
 
         return (
-            <div className="card">
-                {
-                    inputData.map(data => Input((data), this.handleInputChange))
-                }
-            </div>
+            <form onSubmit={this.handleFormSubmit} className="card">
+                <div className="card__inputs">
+                    {
+                        inputData.map((data, index) => {
+                            return Input((data), this.handleInputChange, index)
+                        })
+                    }
+                    <button type="submit">{this.state.contentVisible ? 'Clear Form' : 'Generate Madlib'}</button>
+                    {
+                        this.state.contentVisible ? <Content data={this.state}/> : ''
+                    }
+                </div>
+            </form>
         )
     }
 }
