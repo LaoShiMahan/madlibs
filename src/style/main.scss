@@ -1,3 +1,15 @@
+@mixin button {
+    height: 50px;
+    width: 300px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    color: white;
+    font-family: 'Montserrat';
+    font-size: 22px;
+    text-align: center;
+    justify-self: center;
+}
+
 html {
     font-size: 62.5%; // 1rem is 10px
 }
@@ -45,7 +57,6 @@ body {
         -webkit-clip-path: polygon(0 0, 100% 0%, 100% 25%, 0 50%);
         clip-path: polygon(0 0, 100% 0%, 100% 25%, 0 50%);
         
-
         z-index: -1;
         top: 0;
         left: 0;
@@ -94,10 +105,28 @@ body {
 
     &__inputs {
         display: grid;
-        grid-template-rows: repeat(4, 1fr);
+        grid-template-rows: repeat(4, 27px);
         grid-template-columns: repeat(4, 1fr);
+        grid-row-gap: 120px;
         justify-items: center;
         align-items: center;
+        margin-top: 66px;
+        margin-left: 83px;
+        margin-right: 83px;
+    }
+
+    button:focus {
+        outline: none;
+    }
+
+    &__generate {
+        background-color: #00CB79;
+        @include button;
+    }
+
+    &__clear {
+        background-color: #45b0E5;
+        @include button;
     }
 }
 
@@ -105,16 +134,43 @@ body {
     display: grid;
     // grid-template-rows: repeat(3, 1fr);
     grid-template-columns: [number-start] 26px [number-end input-start] 1fr [input-end];
+    font-family: 'Montserrat';
+    text-align: center;
+    grid-column-gap: 8px;
+    height: 47px;
 
     &__number {
         grid-column: number-start/number-end;
+        background-color: #00CB79;
+        color: white;
+        font-size: 20px;
+        border-radius: 50%;
+        padding-top: 1px;
+        height: 26px;
+        width: 26px;
     }
 
     input {
         grid-column: input-start/input-end;
+        border: none;
+        font-size: 15px;
+        font-weight: 600;
+        text-align: center;
+        width: 190px;
+        padding: 4px 0;
+        border-bottom: 1px solid #b3b3b3;
+        transition: all .3s ease;
+
+        &:focus {
+            outline: none;
+            border-bottom: 1px solid #00CB79;
+        }
     }
 
     &__title {
         grid-column: input-start/input-end;
+        color: #b3b3b3;
+        font-size: 12px;
+        font-weight: 300;
     }
 }
